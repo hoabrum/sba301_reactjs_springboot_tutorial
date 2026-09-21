@@ -1,0 +1,12 @@
+.btn-primary {
+   background-color: #2a7a4b !important;
+   border-color: #2a7a4b;
+   text-transform: uppercase;
+   color: #fff;
+   border-radius: 0.25rem;
+}
+
+.btn-primary {
+   background-color: magenta;
+   color: blue;
+}
