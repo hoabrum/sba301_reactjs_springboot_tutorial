@@ -3,13 +3,18 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, NavLink } from "react-router";
-import { OrchidsData } from "../shared/ListOfOrchids";
+import { OrchidsData } from "../common/ListOfOrchids";
 
 const categories = [...new Set(OrchidsData.map((orchid) => orchid.category))];
 
 function NavBar() {
    return (
-      <Navbar expand="lg" className="bg-body-tertiary" sticky="top" collapseOnSelect>
+      <Navbar
+         expand="lg"
+         className="bg-body-tertiary"
+         sticky="top"
+         collapseOnSelect
+      >
          <Container>
             <Navbar.Brand as={Link} to="/">
                Orchid Shop

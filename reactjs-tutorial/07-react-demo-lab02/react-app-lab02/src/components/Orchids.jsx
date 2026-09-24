@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Row, Col, Container, Card, Button } from "react-bootstrap";
 import { Link, useSearchParams } from "react-router";
-import { OrchidsData } from "../shared/ListOfOrchids";
+import { OrchidsData } from "../common/ListOfOrchids";
 import Modal from "react-bootstrap/Modal";
 
 export default function Orchids() {
@@ -25,7 +25,9 @@ export default function Orchids() {
 
    return (
       <Container>
-         <h2 className="mb-4">{category ? `${category} Orchids` : "All Orchids"}</h2>
+         <h2 className="mb-4">
+            {category ? `${category} Orchids` : "All Orchids"}
+         </h2>
          <Row className="g-4">
             {orchids.map((orchid) => (
                <Col md={3} key={orchid.id}>
