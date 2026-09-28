@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Container, Spinner, Alert } from "react-bootstrap";
+import UserTable from "./UserTable";
 function UserList() {
    const [users, setUsers] = useState([]);
    const [loading, setLoading] = useState(true);
@@ -17,16 +19,26 @@ function UserList() {
          })
          .finally(() => setLoading(false));
    }, []);
-   if (loading) return <p>Loading…</p>;
-   if (error) return <p>Error: {error}</p>;
+   if (loading)
+      return (
+         <Container className="text-center mt-5">
+            <Spinner animation="border" role="status" />
+            <p className="mt-2">Loading…</p>
+         </Container>
+      );
+   if (error)
+      return (
+         <Container className="mt-5">
+            <Alert variant="danger">Error: {error}</Alert>
+         </Container>
+      );
 
    const userList = Array.isArray(users) ? users : [users];
    return (
-      <ul>
-         {userList.map((user) => (
-            <li key={user.id}>{user.email}</li>
-         ))}
-      </ul>
+      <Container className="mt-4">
+         <h2 className="mb-3">User List</h2>
+         <UserTable users={userList} />
+      </Container>
    );
 }
 export default UserList;
