@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Container, Spinner, Alert } from "react-bootstrap";
 import UserTable from "./UserTable";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function UserList() {
    const [users, setUsers] = useState([]);
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState(null);
 
    useEffect(() => {
-      fetch("https://reqres.in/api/users")
+      fetch(`${API_BASE_URL}/users`)
          .then((res) => {
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             return res.json();

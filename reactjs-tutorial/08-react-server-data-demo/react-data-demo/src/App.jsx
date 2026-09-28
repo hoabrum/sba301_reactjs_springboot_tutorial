@@ -1,10 +1,10 @@
 import "./App.css";
-import UserList from "./components/UserList";
+import UserSearchForm from "./components/UserSearchForm";
 
 function App() {
    return (
       <>
-         <UserList />
+         <UserSearchForm />
       </>
    );
 }
