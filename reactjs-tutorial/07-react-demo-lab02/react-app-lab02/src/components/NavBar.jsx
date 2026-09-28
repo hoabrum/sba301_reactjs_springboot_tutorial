@@ -9,7 +9,12 @@ const categories = [...new Set(OrchidsData.map((orchid) => orchid.category))];
 
 function NavBar() {
    return (
-      <Navbar expand="lg" className="bg-body-tertiary" sticky="top" collapseOnSelect>
+      <Navbar
+         expand="lg"
+         className="bg-body-tertiary"
+         sticky="top"
+         collapseOnSelect
+      >
          <Container>
             <Navbar.Brand as={Link} to="/">
                Orchid Shop

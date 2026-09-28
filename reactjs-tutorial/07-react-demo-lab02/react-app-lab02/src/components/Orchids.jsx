@@ -25,7 +25,9 @@ export default function Orchids() {
 
    return (
       <Container>
-         <h2 className="mb-4">{category ? `${category} Orchids` : "All Orchids"}</h2>
+         <h2 className="mb-4">
+            {category ? `${category} Orchids` : "All Orchids"}
+         </h2>
          <Row className="g-4">
             {orchids.map((orchid) => (
                <Col md={3} key={orchid.id}>
