@@ -17,19 +17,12 @@ public class UserRestController {
     private UserRepository userRepository;
 
     @GetMapping("/users")
-    public List<User> fetchAllUsers() {
-        User user1 = new User();
-        user1.setId(1L);
-        user1.setFirstName("John");
-        user1.setLastName("Smith");
-        User user2 = new User();
-        user2.setId(2L);
-        user2.setFirstName("Jane");
-
-        List<User> users = new ArrayList<>();
-        users.add(user1);
-        users.add(user2);
-        return users;
+    public ResponseEntity<?> fetchAllUsers() {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping("/users")
