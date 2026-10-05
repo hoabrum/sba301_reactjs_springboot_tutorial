@@ -1,7 +1,9 @@
 package com.usermanagement.controller;
 
 import com.usermanagement.entity.User;
+import com.usermanagement.exception.RecordNotFoundException;
 import com.usermanagement.repository.UserRepository;
+import org.hibernate.dialect.lock.OptimisticForceIncrementLockingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +51,26 @@ public class UserRestController {
             return new ResponseEntity<>("Firstname must be greater than 3 characters", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(userRepository.save(user), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (!userOptional.isPresent()) {
+            throw new RecordNotFoundException("User with id " + id + " not found");
+        }
+        return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (!userOptional.isPresent()) {
+            throw new RecordNotFoundException("User with id " + id + " not found");
+        }
+        userRepository.delete(userOptional.get());
+        return new ResponseEntity<>("User with id " + id + " deleted", HttpStatus.OK);
     }
 
 }
