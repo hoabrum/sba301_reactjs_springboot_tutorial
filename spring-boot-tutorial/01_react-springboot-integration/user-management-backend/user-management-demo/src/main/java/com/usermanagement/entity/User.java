@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -41,4 +43,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Schema(description = "Gender of the user", example = "MALE")
     private Gender gender;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Address> addresses;
 }
