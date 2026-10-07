@@ -1,5 +1,6 @@
 package com.usermanagement.controller;
 
+import com.usermanagement.entity.Address;
 import com.usermanagement.entity.User;
 import com.usermanagement.exception.RecordNotFoundException;
 import com.usermanagement.repository.UserRepository;
@@ -210,5 +211,22 @@ public class UserRestController {
         userRepository.delete(userOptional.get());
         return new ResponseEntity<>("User with id " + id + " deleted", HttpStatus.OK);
     }
+
+    @PutMapping("/users/addresses/{userId}")
+    public ResponseEntity<?> updateUserAddress(@PathVariable Long userId, @RequestBody User user) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            throw new RecordNotFoundException("User with id " + userId + " not found");
+        }
+        User updatedUser = userOptional.get();
+
+        List<Address> userAddresses = user.getAddresses();
+        for(Address address : userAddresses) {
+            address.setUser(updatedUser);
+        }
+        updatedUser.setAddresses(userAddresses);
+        return new ResponseEntity<>(userRepository.save(updatedUser), HttpStatus.OK);
+    }
+
 
 }
