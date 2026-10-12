@@ -1,7 +1,9 @@
 package com.orchidmanagement.controller;
 
 import com.orchidmanagement.dto.request.CreateOrchidRequestDto;
+import com.orchidmanagement.dto.request.UpdateOrchidRequestDto;
 import com.orchidmanagement.entity.Orchid;
+import com.orchidmanagement.exception.RecordNotFoundException;
 import com.orchidmanagement.service.OrchidService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +42,13 @@ public class OrchidRestController {
         return new ResponseEntity<>(orchidService.save(entityOrchid), HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateOrchid(@PathVariable Long id,
+                                          @Valid @RequestBody UpdateOrchidRequestDto updateOrchidRequestDto) {
 
-
+        Orchid entityOrchid = orchidService.findById(id)
+                .orElseThrow(RecordNotFoundException::new);
+        BeanUtils.copyProperties(updateOrchidRequestDto, entityOrchid);
+        return new ResponseEntity<>(orchidService.save(entityOrchid), HttpStatus.OK);
+    }
 }
