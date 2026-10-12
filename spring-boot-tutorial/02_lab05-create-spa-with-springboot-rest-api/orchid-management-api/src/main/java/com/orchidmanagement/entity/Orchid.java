@@ -8,10 +8,10 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @ToString
 @Entity
-@Table
+@Table(name = "orchids")
 public class Orchid implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,5 +28,5 @@ public class Orchid implements Serializable {
     private boolean isNatural;
 
     @Column(name = "image")
-    private String image;
+    private String image;//URL
 }
