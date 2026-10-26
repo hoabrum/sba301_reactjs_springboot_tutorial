@@ -1,5 +1,7 @@
 package com.hibernatedemo.dao.impl;
 
+import com.hibernatedemo.dao.StudentDao;
+import com.hibernatedemo.entity.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,13 +9,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDaoImplTest {
 
+    private StudentDao studentDao;
+
     @BeforeEach
     void setUp() {
-
+        studentDao = new StudentDaoImpl();
     }
 
     @Test
     void create() {
+        Student student = new Student();
+        student.setFullName("Ronaldo Chistino");
+        student.setAge(20);
+        boolean success = studentDao.create(student);
+        assertTrue(success, "Student was not created");
     }
 
     @Test
