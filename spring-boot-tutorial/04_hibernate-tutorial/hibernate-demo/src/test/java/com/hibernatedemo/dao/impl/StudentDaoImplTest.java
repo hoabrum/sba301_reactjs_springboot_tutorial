@@ -19,7 +19,7 @@ class StudentDaoImplTest {
 
     @DisplayName("Test create a new student successfully")
     @Test
-    void create() {
+    void create_new_student_then_success() {
         Student student = new Student();
         student.setFullName("Ronaldo Chistino");
         student.setAge(20);
