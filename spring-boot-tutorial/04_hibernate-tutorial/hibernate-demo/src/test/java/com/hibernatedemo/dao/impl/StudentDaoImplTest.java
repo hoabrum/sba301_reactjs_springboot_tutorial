@@ -3,6 +3,7 @@ package com.hibernatedemo.dao.impl;
 import com.hibernatedemo.dao.StudentDao;
 import com.hibernatedemo.entity.Student;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,6 +17,7 @@ class StudentDaoImplTest {
         studentDao = new StudentDaoImpl();
     }
 
+    @DisplayName("Test create a new student successfully")
     @Test
     void create() {
         Student student = new Student();
