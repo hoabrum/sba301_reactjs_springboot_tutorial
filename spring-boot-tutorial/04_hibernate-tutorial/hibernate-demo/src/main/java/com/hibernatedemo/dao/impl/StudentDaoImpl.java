@@ -1,9 +1,9 @@
 package com.hibernatedemo.dao.impl;
 
-import com.hibernatedemo.dao.StudentDAO;
+import com.hibernatedemo.dao.StudentDao;
 import com.hibernatedemo.entity.Student;
 
-public class StudentImpl implements StudentDAO {
+public class StudentDaoImpl implements StudentDao {
 
     @Override
     public boolean create(Student student) {

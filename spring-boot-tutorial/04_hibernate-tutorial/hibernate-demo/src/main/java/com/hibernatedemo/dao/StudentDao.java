@@ -2,7 +2,7 @@ package com.hibernatedemo.dao;
 
 import com.hibernatedemo.entity.Student;
 
-public interface StudentDAO {
+public interface StudentDao {
 
     boolean create(Student student);
 }
